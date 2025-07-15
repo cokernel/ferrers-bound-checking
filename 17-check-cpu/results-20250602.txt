@@ -1,0 +1,9 @@
+Ferrers bound conjecture checking for small bipartite graphs
+
+
+Verification of bipartite graphs of fewer than 16 vertices:
+
+time bash multi.sh| tee multi-results.txt
+
+bash multi.sh  0.00s user 0.00s system 49% cpu 0.012 total
+tee multi-results.txt  0.00s user 0.00s system 0% cpu 1:20:28.37 total
