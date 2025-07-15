@@ -12,7 +12,9 @@ In this note, a companion piece to another by the author (in preparation) we stu
 Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y$. We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G$. The *tree number* of $G$, denoted by $T(G)$, is the number of distinct spanning trees of $G$.
 
 **Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant of $G$*, denoted by $F(G)$, is the nonnegative rational quantity
+
 $$F(G) = \frac{1}{|X||Y|}\prod_{v\in V}\deg_G(v).$$
+
 **Conjecture** (Ehrenborg 2006). Let $G$ be a bipartite graph. Then $T(G) \le F(G)$.
 
 This conjecture, which we call the *Ferrers bound conjecture*, is known to hold for some infinite classes of bipartite graphs and is open in general. In this note we focus on the search for small counterexamples.
@@ -20,6 +22,7 @@ This conjecture, which we call the *Ferrers bound conjecture*, is known to hold 
 Schmidt (2009) verified by a computer calculation that a counterexample to the Ferrers bound conjecture must have at least 14 vertices. In 2020, the author, using nauty (McKay and Piperno, 2013) and LAPACK (Anderson et al., 1999), replicated Schmidt's result and increased the minimum order of a counterexample to 18 vertices. However, the artifacts for these calculations were not preserved. Therefore, we replicate the results and provide our code so that others may verify the results for themselves and, we hope, extend and improve them.
 
 **Definition** Let $G$ be a graph of order $n$ and label the vertices $v_1, \cdots, v_n$. Then the *Laplacian* of $G$ is the $n \times n$ matrix $L = (\ell_{i,j})$ such that
+
 $$
 \ell_{i,j} = \begin{cases}
 \deg_G(v_i) & i = j \\
@@ -27,12 +30,17 @@ $$
 0 & \text{otherwise.}
 \end{cases}
 $$
+
 The Laplacian of a graph is positive semidefinite. The matrix-tree theorem, implicit in Kirchhoff (1847) and proved by Brooks et al. (1940), shows that the spectrum of the Laplacian determines the tree number. We give a more modern statement, following Cvetković, Doob, and Sachs (1980).
 
 **Theorem** (Brooks et al. 1940). Let $G$ be a graph of order $n$ with Laplacian $L$. Suppose $L$ has eigenvalues $\lambda_1 \ge \cdots \ge \lambda_n = 0$. Then
+
 $$ T(G) = \frac{1}{n} \prod_{i=1}^{n-1}\lambda_i.$$
+
 Equivalently,
+
 $$ T(G) = \det(L(i)),$$
+
 where $L(i)$ is a principal submatrix of $L$.
 
 Observe that disconnected graphs have zero spanning trees, so the conjecture is trivially true for such graphs.
@@ -59,7 +67,7 @@ This program requires the following:
 * LAPACK, which can be obtained on macOS with the [Homebrew](https://brew.sh/) command `brew install lapack`
 * A C compiler, such as [Clang](https://clang.llvm.org/).
 
-The directory [17-check-cpu] includes the code used for the calculation. To compile the code with Clang on macOS, use the command `bash build.sh`. This will generate the executable `ferrers-check2`.
+The directory [17-check-cpu](17-check-cpu/) includes the code used for the calculation. To compile the code with Clang on macOS, use the command `bash build.sh`. This will generate the executable `ferrers-check2`.
 
 To run parallel tests of very small graphs, $1 \le |V(G)| \le 15$, use the command `bash multi.sh`.
 
@@ -77,9 +85,9 @@ An experiment was performed between June 2, 2025 and June 26, 2025 on a computer
 * macOS version: Sonoma 14.6.1
 
 The following commands were used:
-* `time bash [multi.sh] | tee [multi-results.txt]` ($1 \le |V(G)| \le 15$)
-* `time bash [split.sh] 16 4 5 | tee [16-4-5.txt]` ($|V(G)| = 16$)
-* `time bash [split.sh] 17 4 5 | tee [17-4-5.txt]` ($|V(G)| = 17$)
+* `time bash multi.sh | tee multi-results.txt` ($1 \le |V(G)| \le 15$)
+* `time bash split.sh 16 4 5 | tee 16-4-5.txt` ($|V(G)| = 16$)
+* `time bash split.sh 17 4 5 | tee 17-4-5.txt` ($|V(G)| = 17$)
 
 No counterexamples were found.
 
