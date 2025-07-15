@@ -52,7 +52,7 @@ We use the programs `geng` and `biplabg`, included in nauty, to generate connect
 2. Decode the graph and construct the Laplacian $L$, also storing the order of each part.
 3. Compute the conjectured Ferrers bound. The numerator is the product of the diagonal entries of $L$, and the denominator is the product of the orders of each part.
 4. Compute the tree number using LAPACK. We provide some more detail below.
-5. Verify that $T(G) \le F(G)$ for the given graph. If $T(G) > F(G).$ then output "not ok" followed by the graph6 representation of the graph, then halt.
+5. Verify that $T(G) \le F(G)$ for the given graph. If $T(G) > F(G),$ then output "not ok" followed by the graph6 representation of the graph, then halt.
 
 If no counterexamples were found, the C program will output "ok" followed by the order of the final graph verified. The program is intended to be provided with streams of graphs of the same order.
 ### Computing the tree number
