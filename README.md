@@ -11,7 +11,7 @@ In this note, a companion piece to another by the author (in preparation) we stu
 
 Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y$. We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G$. The *tree number* of $G$, denoted by $T(G)$, is the number of distinct spanning trees of $G$.
 
-**Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant of $G$*, denoted by $F(G)$, is the nonnegative rational quantity
+**Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant* of $G$, denoted by $F(G)$, is the nonnegative rational quantity
 
 $$F(G) = \frac{1}{|X||Y|}\prod_{v\in V}\deg_G(v).$$
 
