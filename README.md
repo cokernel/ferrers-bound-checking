@@ -9,7 +9,7 @@ The Ferrers invariant of a bipartite graph is defined in terms of its degree seq
 
 In this note, a companion piece to another by the author (in preparation) we study an upper bound conjectured by Ehrenborg (2006) for the number of spanning trees of bipartite graphs. All graphs are simple, undirected and finite. Graph theory terminology which we do not define here can be found in any standard graph theory text. Linear algebra terminology which we do not define here can be found in Horn and Johnson (2012).
 
-Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y.$ We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G$. The *tree number* of $G,$ denoted by $T(G)$, is the number of distinct spanning trees of $G.$
+Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y.$ We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G.$ The *tree number* of $G,$ denoted by $T(G)$, is the number of distinct spanning trees of $G.$
 
 **Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant* of $G,$ denoted by $F(G),$ is the nonnegative rational quantity
 
