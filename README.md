@@ -9,19 +9,19 @@ The Ferrers invariant of a bipartite graph is defined in terms of its degree seq
 
 In this note, a companion piece to another by the author (in preparation) we study an upper bound conjectured by Ehrenborg (2006) for the number of spanning trees of bipartite graphs. All graphs are simple, undirected and finite. Graph theory terminology which we do not define here can be found in any standard graph theory text. Linear algebra terminology which we do not define here can be found in Horn and Johnson (2012).
 
-Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y$. We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G$. The *tree number* of $G$, denoted by $T(G)$, is the number of distinct spanning trees of $G$.
+Let $G = (V, E)$ be a bipartite graph with bipartition $V = X \sqcup Y.$ We call $X$ and $Y$ the *parts* of $G$ and say that $G$ has *order* $|V|$ and *size* $|E|$. A *spanning tree* of $G$ is a subgraph of $G$ which is a tree and which contains all vertices of $G$. The *tree number* of $G$, denoted by $T(G)$, is the number of distinct spanning trees of $G.$
 
-**Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant* of $G$, denoted by $F(G)$, is the nonnegative rational quantity
+**Definition**. Let $G$ be a bipartite graph with bipartition $V = X \sqcup Y$. Then the *Ferrers invariant* of $G,$ denoted by $F(G),$ is the nonnegative rational quantity
 
 $$F(G) = \frac{1}{|X||Y|}\prod_{v\in V}\deg_G(v).$$
 
-**Conjecture** (Ehrenborg 2006). Let $G$ be a bipartite graph. Then $T(G) \le F(G)$.
+**Conjecture** (Ehrenborg 2006). Let $G$ be a bipartite graph. Then $T(G) \le F(G).$
 
 This conjecture, which we call the *Ferrers bound conjecture*, is known to hold for some infinite classes of bipartite graphs and is open in general. In this note we focus on the search for small counterexamples.
 
 Schmidt (2009) verified by a computer calculation that a counterexample to the Ferrers bound conjecture must have at least 14 vertices. In 2020, the author, using nauty (McKay and Piperno, 2013) and LAPACK (Anderson et al., 1999), replicated Schmidt's result and increased the minimum order of a counterexample to 18 vertices. However, the artifacts for these calculations were not preserved. Therefore, we replicate the results and provide our code so that others may verify the results for themselves and, we hope, extend and improve them.
 
-**Definition** Let $G$ be a graph of order $n$ and label the vertices $v_1, \cdots, v_n$. Then the *Laplacian* of $G$ is the $n \times n$ matrix $L = (\ell_{i,j})$ such that
+**Definition** Let $G$ be a graph of order $n$ and label the vertices $v_1, \cdots, v_n.$ Then the *Laplacian* of $G$ is the $n \times n$ matrix $L = (\ell_{i,j})$ such that
 
 $$
 \ell_{i,j} = \begin{cases}
@@ -33,7 +33,7 @@ $$
 
 The Laplacian of a graph is positive semidefinite. The matrix-tree theorem, implicit in Kirchhoff (1847) and proved by Brooks et al. (1940), shows that the spectrum of the Laplacian determines the tree number. We give a more modern statement, following Cvetković, Doob, and Sachs (1980).
 
-**Theorem** (Brooks et al. 1940). Let $G$ be a graph of order $n$ with Laplacian $L$. Suppose $L$ has eigenvalues $\lambda_1 \ge \cdots \ge \lambda_n = 0$. Then
+**Theorem** (Brooks et al. 1940). Let $G$ be a graph of order $n$ with Laplacian $L$. Suppose $L$ has eigenvalues $\lambda_1 \ge \cdots \ge \lambda_n = 0.$ Then
 
 $$ T(G) = \frac{1}{n} \prod_{i=1}^{n-1}\lambda_i.$$
 
@@ -52,7 +52,7 @@ We use the programs `geng` and `biplabg`, included in nauty, to generate connect
 2. Decode the graph and construct the Laplacian $L$, also storing the order of each part.
 3. Compute the conjectured Ferrers bound. The numerator is the product of the diagonal entries of $L$, and the denominator is the product of the orders of each part.
 4. Compute the tree number using LAPACK. We provide some more detail below.
-5. Verify that $T(G) \le F(G)$ for the given graph. If $T(G) > F(G)$, then output "not ok" followed by the graph6 representation of the graph, then halt.
+5. Verify that $T(G) \le F(G)$ for the given graph. If $T(G) > F(G).$ then output "not ok" followed by the graph6 representation of the graph, then halt.
 
 If no counterexamples were found, the C program will output "ok" followed by the order of the final graph verified. The program is intended to be provided with streams of graphs of the same order.
 ### Computing the tree number
@@ -69,12 +69,13 @@ This program requires the following:
 
 The directory [17-check-cpu](17-check-cpu/) includes the code used for the calculation. To compile the code with Clang on macOS, use the command `bash build.sh`. This will generate the executable `ferrers-check2`.
 
-To run parallel tests of very small graphs, $1 \le |V(G)| \le 15$, use the command `bash multi.sh`.
+To run parallel tests of very small graphs, $1 \le |V(G)| \le 15,$ use the command `bash multi.sh`.
 
 To run parallel tests of graphs of order 16 or 17, the `split.sh` command is provided. This accepts three arguments:
 * *n* - order of graphs to test
 * *mod* - number of processes to use (note: because of the way `geng` works, the number of graphs each process will receive can vary)
 * *pause* - time to wait between process launches (this is not strictly necessary but can reduce fan noise; all processes run concurrently aside from the staggered starts).
+
 Example invocation: to test graphs of order 17 in 4 processes, waiting 5 seconds between process launches, use the command `bash split.sh 17 4 5`.
 ## Results
 
